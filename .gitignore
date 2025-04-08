@@ -1,0 +1,10 @@
+# Entorno virtual
+venv/
+
+# Configs locales
+.env
+*.pyc
+__pycache__/
+
+# VS Code settings (opcional)
+.vscode/
