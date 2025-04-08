@@ -20,5 +20,5 @@ Funciona en **Windows, Linux y macOS**, sin necesidad de instalar Oracle Client,
 ### 1. Clona este repositorio
 
 ```bash
-git clone https://github.com/jonamx13/scott_crud.git
+git clone https://github.com/jonamx13/scott_crud_BasesDatosI.git
 cd scott_crud
