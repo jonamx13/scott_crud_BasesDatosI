@@ -8,7 +8,11 @@ from crud import (
     leer_departamentos,
     crear_departamento,
     actualizar_departamento,
-    eliminar_departamento
+    eliminar_departamento,
+    leer_empleados,
+    crear_empleado,
+    eliminar_empleado,
+    actualizar_salario
 )
 
 def menu():
@@ -18,8 +22,12 @@ def menu():
         print("2. Crear departamento")
         print("3. Actualizar departamento")
         print("4. Eliminar departamento")
-        print("5. Insertar datos de prueba")
-        print("9. Reiniciar base de datos")
+        print("5. Ver empleados")
+        print("6. Crear empleado")
+        print("7. Eliminar empleado")
+        print("8. Actualizar empleado")
+        print("9. Insertar datos de prueba")
+        print("10. Reiniciar base de datos")
         print("0. Salir")
         opcion = input("Selecciona una opción: ")
 
@@ -41,8 +49,23 @@ def menu():
         elif opcion == "4":
             deptno = int(input("Departamento a eliminar: "))
             eliminar_departamento(deptno)
-
+        
         elif opcion == "5":
+            leer_empleados()
+        
+        elif opcion == "6":
+            crear_empleado()
+
+        elif opcion == "7":
+            empno = int(input("ID del empleado a eliminar: "))
+            eliminar_empleado(empno)
+
+        elif opcion == "8":
+            empno = int(input("ID del empleado a actualizar: "))
+            nuevo_salario = float(input("Nuevo salario: "))
+            actualizar_salario(empno, nuevo_salario)
+
+        elif opcion == "9":
             if datos_ya_existen():
                 print("⚠️ Ya existen datos en la base de datos. Si deseas recargar los de prueba, reinicia primero (opción 9).")
             
@@ -51,7 +74,7 @@ def menu():
                 if confirmar == "S":
                     ejecutar_sql_desde_archivo("sample_data.sql")
 
-        elif opcion == "9":
+        elif opcion == "10":
             confirmar = input("⚠️ ¿Estás seguro que deseas reiniciar TODA la base de datos? (S/N): ").strip().upper()
             if confirmar == "S":
                 ejecutar_sql_desde_archivo("init_db.sql")
