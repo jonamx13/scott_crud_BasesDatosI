@@ -1,5 +1,15 @@
 from db_config import get_connection
 
+def datos_ya_existen():
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM DEPT")
+            total = cursor.fetchone()[0]
+            return total > 0
+    except Exception:
+        return False
+
 def ejecutar_sql_desde_archivo(ruta_sql):
     """
     Ejecuta un archivo .sql completo (usando separadores de comandos por ';').

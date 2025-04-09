@@ -1,6 +1,9 @@
 import os
 from session import leer_sesion, guardar_sesion
-from sql_utils import ejecutar_sql_desde_archivo
+from sql_utils import (
+    ejecutar_sql_desde_archivo,
+    datos_ya_existen
+)
 from crud import (
     leer_departamentos,
     crear_departamento,
@@ -40,9 +43,13 @@ def menu():
             eliminar_departamento(deptno)
 
         elif opcion == "5":
-            confirmar = input("¿Deseas insertar los datos de prueba? (S/N): ").strip().upper()
-            if confirmar == "S":
-                ejecutar_sql_desde_archivo("sample_data.sql")
+            if datos_ya_existen():
+                print("⚠️ Ya existen datos en la base de datos. Si deseas recargar los de prueba, reinicia primero (opción 9).")
+            
+            else:
+                confirmar = input("¿Deseas insertar los datos de prueba? (S/N): ").strip().upper()
+                if confirmar == "S":
+                    ejecutar_sql_desde_archivo("sample_data.sql")
 
         elif opcion == "9":
             confirmar = input("⚠️ ¿Estás seguro que deseas reiniciar TODA la base de datos? (S/N): ").strip().upper()
