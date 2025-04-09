@@ -2,19 +2,22 @@ from db_config import get_connection
 
 def ejecutar_sql_desde_archivo(ruta_sql):
     """
-    Ejecuta un archivo .sql línea por línea.
+    Ejecuta un archivo .sql completo (usando separadores de comandos por ';').
     """
     try:
         with open(ruta_sql, 'r', encoding='utf-8') as archivo:
             sql_script = archivo.read()
 
-        comandos = sql_script.split(';')
+        # Separar los comandos por ';', pero mantener los que son válidos
+        comandos = [cmd.strip() for cmd in sql_script.split(';') if cmd.strip()]
+
         with get_connection() as conn:
             cursor = conn.cursor()
             for comando in comandos:
-                comando = comando.strip()
-                if comando:
+                try:
                     cursor.execute(comando)
+                except Exception as inner_e:
+                    print(f"⚠️ Error en comando:\n{comando}\n→ {inner_e}")
             conn.commit()
         print("✅ Script ejecutado correctamente:", ruta_sql)
     except Exception as e:

@@ -1,3 +1,4 @@
+import os
 from session import leer_sesion, guardar_sesion
 from sql_utils import ejecutar_sql_desde_archivo
 from crud import (
@@ -6,7 +7,6 @@ from crud import (
     actualizar_departamento,
     eliminar_departamento
 )
-import os
 
 def menu():
     while True:
@@ -15,6 +15,7 @@ def menu():
         print("2. Crear departamento")
         print("3. Actualizar departamento")
         print("4. Eliminar departamento")
+        print("5. Insertar datos de prueba")
         print("9. Reiniciar base de datos")
         print("0. Salir")
         opcion = input("Selecciona una opción: ")
@@ -38,6 +39,11 @@ def menu():
             deptno = int(input("Departamento a eliminar: "))
             eliminar_departamento(deptno)
 
+        elif opcion == "5":
+            confirmar = input("¿Deseas insertar los datos de prueba? (S/N): ").strip().upper()
+            if confirmar == "S":
+                ejecutar_sql_desde_archivo("sample_data.sql")
+
         elif opcion == "9":
             confirmar = input("⚠️ ¿Estás seguro que deseas reiniciar TODA la base de datos? (S/N): ").strip().upper()
             if confirmar == "S":
@@ -54,7 +60,8 @@ def menu():
             print("❌ Opción inválida. Intenta de nuevo.")
 
 if __name__ == "__main__":
-    os.system('cls' if os.name == 'nt' else 'clear')  # Limpia pantalla
+    os.system('cls' if os.name == 'nt' else 'clear')  # Limpiar pantalla
+    
     ultima = leer_sesion()
     if ultima:
         print(f"👋 Bienvenido de nuevo. Tu última sesión fue el {ultima['fecha']} desde {ultima['sistema']}.")
