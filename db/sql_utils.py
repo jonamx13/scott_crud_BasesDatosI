@@ -1,4 +1,4 @@
-from db_config import get_connection
+from db.db_config import get_connection
 
 def datos_ya_existen():
     try:
