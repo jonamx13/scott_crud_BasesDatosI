@@ -33,8 +33,13 @@ venv\Scripts\activate
 # macOS/Linux:
 source venv/bin/activate
 ```
-
 ### 3. Instala las dependencias
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Crea un archivo `.env`
+
 Creamos un archivo `.env` en la raíz de nuestro proyecto
 ```bash
 # Ingresa tu usuario que usas en Oracle
@@ -46,7 +51,38 @@ DB_PASSWORD=**TU_CONTRASEÑA** // Ejemplo -> DB_PASSWORD=password
 # nombre del servicio para Oracle XE
 DB_DSN=**TU_SERVICIO** //Ejemplo -> DB_DSN=localhost/XEPDB1
 ```
-> Asegurate de que el `DSN` sea correcto. si usas **Oracle XE**, problablemente sea `localhost/XEPDB1`
+> ⚠️ Asegúrate de que el `DB_DSN` sea correcto. si usas **Oracle XE**, problablemente sea `localhost/XEPDB1`
+
+---
+
+## 🔌 Conexión en Oracle Database / SQL Developer
+
+Este proyecto se conecta directamente a la base de datos Oracle desde Python usando las variables definidas en el archivo `.env`. Sin embargo, puedes verificar manualmente que todo esté funcionando correctamente usando **SQL Developer** u otro cliente Oracle.
+
+### ▶️ Pasos para conectar en SQL Developer:
+
+1. Abre **SQL Developer**
+2. Crea una nueva conexión:
+
+- **Nombre de conexión:** `scott_crud` (puede ser cualquiera)
+- **Usuario:** `SYSTEM` (o el que pusiste en tu `.env`)
+- **Contraseña:** la que configuraste al instalar Oracle
+- **Tipo:** Básico
+- **Host:** `localhost`
+- **Puerto:** `1521`
+- **SID:** `xe` (Si configuramos el ***Nombre del servicio*** dejamos este vacío)
+- **Nombre del Servicio:** `XEPDB1` (nombre de servicio típico para **Oracle XE**) (Si configuramos el ***SID*** dejamos este vacío)
+- Marca "Guardar contraseña"
+
+3. Haz clic en **Probar conexión**
+
+Si todo está correcto, verás el mensaje:
+
+Estado: Correcto
+
+
+💡 Esto confirma que tus credenciales `.env` están bien configuradas y que tu base de datos está activa.
+
 
 ## 🧠 Estructura del proyecto
 ```bash
