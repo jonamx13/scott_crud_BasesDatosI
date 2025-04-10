@@ -84,15 +84,65 @@ python main.py
 ```
 ### 2. Menú principal
 
-<span style="color:blue; font-weight:bold">--- MENÚ CRUD SCOTT ---</span>  
-<span style="color:red; font-weight:bold">1.</span> Ver departamentos  
-<span style="color:red; font-weight:bold">2.</span> Crear departamento  
-<span style="color:red; font-weight:bold">3.</span> Actualizar departamento  
-<span style="color:red; font-weight:bold">4.</span> Eliminar departamento  
-<span style="color:red; font-weight:bold">5.</span> Ver empleados  
-<span style="color:red; font-weight:bold">6.</span> Crear empleado  
-<span style="color:red; font-weight:bold">7.</span> Eliminar empleado  
-<span style="color:red; font-weight:bold">8.</span> Actualizar empleado  
-<span style="color:red; font-weight:bold">9.</span> Insertar datos de prueba  
-<span style="color:red; font-weight:bold">10.</span> Reiniciar base de datos  
-<span style="color:red; font-weight:bold">0.</span> Salir  
+--- MENÚ CRUD SCOTT ---
+1. Ver departamentos
+2. Crear departamento
+3. Actualizar departamento
+4. Eliminar departamento
+5. Ver empleados
+6. Crear empleado
+7. Eliminar empleado
+8. Actualizar empleado
+9. Insertar datos de prueba
+10. Reiniciar base de datos
+0. Salir
+
+
+## 🧼 Limpieza del proyecto
+
+Para eliminar todo el entorno virtual, variables y cachés locales:
+
+### Linux🐧/macOS🍎
+
+```bash
+./limpiar.sh
+```
+### Windows ⊞
+
+```bash
+limpiar_proyecto.bat
+```
+
+Esto eliminará:
+* `venv/`
+* `.env`
+* `last_session.json`
+*  Carpetas `__pycache__`
+
+## 🎯 Funciones destacadas
+* ✅ Menús limpios con navegación por pantalla
+* ✅ Consola se reinicia entre acciones para no saturar el flujo
+* ✅ Persistencia de sesión con fecha y sistema operativo detectado(`Windows`, `Linux`, `MacOS`)
+* ✅ Valores actuales sugeridos al actualizar datos
+* ✅ Modularización real: servicios, UI, BD, sesiones
+
+## 🛠 Tecnología usada
+
+* Python 3.11
+* Oracle Database (modo Thin)
+* `oracledb` (driver oficial de Oracle para Python)
+* `dotenv` para variables de entorno
+* ANSI Escape Codes para limpiar pantalla en consola
+
+## 🧾 Créditos
+**Materia:** Bases de Datos I
+**Asesor:** Ricardo Ramón Torres Knight
+**Alumno:** Jonathan Eduardo Olivas Meixueiro
+**Matricula:** 240694
+**Fecha de entrega:** 10/Abril/2025
+
+## 🚫 Notas
+
+
+* **NO** subas tu `.env` ni `last_session` a ningún repositorio.
+* El proyecto está preparado para ser multiplataforma, testeado en (Windows⊞, MacOS🍎 y Linux🐧).
