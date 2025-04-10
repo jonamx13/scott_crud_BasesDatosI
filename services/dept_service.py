@@ -19,8 +19,8 @@ def crear_departamento():
     try:
         print("\n🆕 Crear nuevo departamento")
         deptno = int(input("Número de departamento (ej. 50): "))
-        dname = input("Nombre del departamento (ej. MARKETING): ")
-        loc = input("Ubicación (ej. MONTERREY): ")
+        dname = input("Nombre del departamento (ej. MARKETING): ").upper()
+        loc = input("Ubicación (ej. MONTERREY): ").upper()
 
         with get_connection() as conn:
             cursor = conn.cursor()
@@ -37,11 +37,20 @@ def actualizar_departamento():
     leer_departamentos()
     try:
         deptno = int(input("\nID del departamento a actualizar: "))
-        nuevo_nombre = input("Nuevo nombre: ")
-        nueva_loc = input("Nueva ubicación: ")
 
         with get_connection() as conn:
             cursor = conn.cursor()
+            cursor.execute("SELECT DNAME, LOC FROM DEPT WHERE DEPTNO = :1", [deptno])
+            dept = cursor.fetchone()
+
+            if not dept:
+                print("❌ Departamento no encontrado.")
+                return
+
+            print("\nDeja vacío para conservar el valor actual:")
+            nuevo_nombre = input(f"Nuevo nombre [{dept[0]}]: ").upper() or dept[0]
+            nueva_loc = input(f"Nueva ubicación [{dept[1]}]: ").upper() or dept[1]
+
             cursor.execute("""
                 UPDATE DEPT
                 SET DNAME = :1, LOC = :2

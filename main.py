@@ -1,7 +1,8 @@
 import os
 from session import leer_sesion, guardar_sesion
 from db.sql_utils import ejecutar_sql_desde_archivo
-from ui.menus import mostrar_menu
+from ui.menus import mostrar_menu, limpiar_pantalla
+
 from services.dept_service import (
     leer_departamentos,
     crear_departamento,
@@ -32,14 +33,30 @@ def menu():
         opcion = input("Selecciona una opción: ").strip()
 
         match opcion:
-            case "1": leer_departamentos()
-            case "2": crear_departamento()
-            case "3": actualizar_departamento()
-            case "4": eliminar_departamento()
-            case "5": leer_empleados()
-            case "6": crear_empleado()
-            case "7": eliminar_empleado()
-            case "8": actualizar_empleado()
+            case "1":
+                limpiar_pantalla()
+                leer_departamentos()
+            case "2":
+                limpiar_pantalla()
+                crear_departamento()
+            case "3":
+                limpiar_pantalla()
+                actualizar_departamento()
+            case "4":
+                limpiar_pantalla()
+                eliminar_departamento()
+            case "5":
+                limpiar_pantalla()
+                leer_empleados()
+            case "6":
+                limpiar_pantalla()
+                crear_empleado()
+            case "7":
+                limpiar_pantalla()
+                eliminar_empleado()
+            case "8": 
+                limpiar_pantalla()
+                actualizar_empleado()
             case "9":
                 if datos_ya_existen():
                     print("⚠️ Ya existen datos en la base de datos. Si deseas recargar los de prueba, reinicia primero (opción 10).")

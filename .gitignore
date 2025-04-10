@@ -5,6 +5,7 @@ venv/
 .env
 *.pyc
 __pycache__/
+last_session.json
 
-# VS Code settings (opcional)
+# VS Code settings
 .vscode/
