@@ -5,13 +5,21 @@ import os
 
 SESSION_FILE = "last_session.json"
 
+def sistema_legible():
+    sistemas = {
+        "Windows": "Windows",
+        "Linux": "Linux",
+        "Darwin": "macOS"
+    }
+    return sistemas.get(platform.system(), platform.system())
+
 def guardar_sesion():
     """
     Guarda la fecha y hora actuales, junto con el sistema operativo.
     """
     data = {
         "fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "sistema": platform.system()
+        "sistema": sistema_legible()
     }
     try:
         with open(SESSION_FILE, 'w', encoding='utf-8') as f:
