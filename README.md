@@ -23,14 +23,28 @@ cd scott_crud
 ```
 
 ### 2. Crea y activa un entorno virtual
+Primero creamos el entorno virtual
 ```bash
-## Primero creamos el entorno virtual
 python -m venv venv
+```
+Luego lo activamos según nuestro sistema operativo
+#### ⊞ Windows:
+```bash
+## CMD
+venv\Scripts\activate.bat
 
-## Luego lo activamos según nuestro sistema operativo
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
+## Powershell
+venv\Scripts\Activate.ps1
+
+## Git bash (opción 1)
+winpty venv/Scripts/activate.bat
+
+## Git bash (opción 2)
+source venv/Scripts/activate
+```
+
+#### 🍎macOS/ 🐧Linux:
+```bash
 source venv/bin/activate
 ```
 ### 3. Instala las dependencias
@@ -89,7 +103,7 @@ Estado: Correcto
 scott_crud/
 │
 ├── db/
-│   ├── config.py         ← Conexión a "Oracle"
+│   ├── db_config.py         ← Conexión a "Oracle"
 │   └── sql_utils.py      ← Ejecutar scripts "SQL"
 │
 ├── services/
@@ -99,16 +113,17 @@ scott_crud/
 ├── ui/
 │   └── menus.py          ← Menú principal y limpieza
 │
-├── session.py            ← Control de sesiones (fecha y sistema operativo)
 ├── main.py               ← "App principal (entry point)"
+├── session.py            ← Control de sesiones (fecha y sistema operativo)
 ├── init_db.sql           ← Script para crear las tablas
 ├── sample_data.sql       ← Datos de prueba
-├── .env                  ← Tus credenciales "(NO subir a GitHub)"
-├── .gitignore
-├── limpiar.sh            ← Script limpieza "Linux/macOS"
-├── limpiar_proyecto.bat  ← Script limpieza "Windows"
-└── README.md
-
+├── requirements.txt      ← Listado de dependencias para entorno virtual (venv)
+├── activate_env.sh       ← Script para activar entorno virtual (venv)
+├── limpiar_proyecto.bat  ← Script para limpiar y reiniciar proyecto en "Windows"
+├── limpiar_proyecto.sh   ← Script para limpiar y reiniciar proyecto en "MacOS/Linux"
+├── .env                  ← Credenciales “(NO subir a repositorio remoto)”
+├── .gitignore            ← Exclusión de archivos locales y de caché
+└── README.md             ← Documentación del proyecto
 ```
 
 ## 🧪 Uso
@@ -141,12 +156,12 @@ Para eliminar todo el entorno virtual, variables y cachés locales:
 ### Linux🐧/macOS🍎
 
 ```bash
-./limpiar.sh
+./limpiar_proyecto.sh
 ```
 ### Windows ⊞
 
 ```bash
-limpiar_proyecto.bat
+./limpiar_proyecto.bat
 ```
 
 Esto eliminará:
@@ -160,7 +175,7 @@ Esto eliminará:
 * ✅ Consola se reinicia entre acciones para no saturar el flujo
 * ✅ Persistencia de sesión con fecha y sistema operativo detectado(`Windows`, `Linux`, `MacOS`)
 * ✅ Valores actuales sugeridos al actualizar datos
-* ✅ Modularización real: servicios, UI, BD, sesiones
+* ✅ Modularización: Servicios, UI(Interfaz de usuario), Bases de Datos, Sesiones
 
 ## 🛠 Tecnología usada
 
@@ -171,11 +186,11 @@ Esto eliminará:
 * ANSI Escape Codes para limpiar pantalla en consola
 
 ## 🧾 Créditos
-**Materia:** Bases de Datos I
-**Asesor:** Ricardo Ramón Torres Knight
-**Alumno:** Jonathan Eduardo Olivas Meixueiro
-**Matricula:** 240694
-**Fecha de entrega:** 10/Abril/2025
+- **Materia:** Bases de Datos I
+- **Asesor:** Ricardo Ramón Torres Knight
+- **Alumno:** Jonathan Eduardo Olivas Meixueiro
+- **Matricula:** 240694
+- **Fecha de entrega:** 10/Abril/2025
 
 ## 🚫 Notas
 
